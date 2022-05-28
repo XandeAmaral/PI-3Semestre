@@ -40,7 +40,11 @@ public class FornecedorDAO {
 		}
 		return men;
 	}
-		
+	/**
+	 * Realiza  a atualização de fornecedor
+	 * @param f - Objeto do tipo funcionario
+	 * @return - Mensagem com o resultado da operação
+	 */
 		public String atualizar(Fornecedor f) {
 			
 		sql = "update fornecedor set telefone=?, email=? where codfornecedor = ?";
