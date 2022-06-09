@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import service.BD;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Component;
@@ -43,7 +46,7 @@ public class GuiLogin extends JFrame {
 					e.printStackTrace();
 				}
 			}
-		});
+		});		
 	}
 
 	/**

@@ -17,7 +17,7 @@ public class FornecedorDAO {
 	/**
 	 * Realiza  o cadastro de fornecedor
 	 * @param f - Objeto do tipo funcionario
-	 * @return - Mensagem com o resultado da operação
+	 * @return - Mensagem com o resultado da operaï¿½ï¿½o
 	 */
 	public String incluir(Fornecedor f) {
 		sql = "insert into fornecedor (nome,cnpj,telefone,email) values (?, ?, ?, ?)";
@@ -41,9 +41,9 @@ public class FornecedorDAO {
 		return men;
 	}
 	/**
-	 * Realiza  a atualização de fornecedor
+	 * Realiza  a atualizaï¿½ï¿½o de fornecedor
 	 * @param f - Objeto do tipo funcionario
-	 * @return - Mensagem com o resultado da operação
+	 * @return - Mensagem com o resultado da operaï¿½ï¿½o
 	 */
 		public String atualizar(Fornecedor f) {
 			
@@ -58,7 +58,7 @@ public class FornecedorDAO {
 			men = "Fornecedor atualizado com sucesso"; 
 		}
 		catch(SQLException e) {
-			men = "Não foi possivel atualizar o fornecedor!"+e; 
+			men = "Nï¿½o foi possivel atualizar o fornecedor!"+e; 
 		}
 	
 	finally {
@@ -67,9 +67,9 @@ public class FornecedorDAO {
 	return men;
 }
 	/**
-	 * Realiza a exclusão de um fornecedor
+	 * Realiza a exclusï¿½o de um fornecedor
 	 * @param codigo - Paramentro utilizado para identificar o fornecedor a ser excluido
-	 * @return - Mensagem com o resultado da operação
+	 * @return - Mensagem com o resultado da operaï¿½ï¿½o
 	 */
 	public String excluir(int codfornecedor) {
 		sql = "delete fornecedor where codfornecedor = ?";
@@ -78,12 +78,12 @@ public class FornecedorDAO {
 			bd.st = bd.con.prepareStatement(sql);
 			bd.st.setInt(1,codfornecedor);
 			if(bd.st.executeUpdate()==1)
-				men = "Fornecedor excluído com sucesso!";
+				men = "Fornecedor excluï¿½do com sucesso!";
 			else
-				men = "Fornecedor não foi encontrado!";
+				men = "Fornecedor nï¿½o foi encontrado!";
 		}
 		catch(SQLException erro) {
-			men = "Falha na exclusão "+erro; 
+			men = "Falha na exclusï¿½o "+erro; 
 		}
 		finally {
 			bd.close();
@@ -93,7 +93,7 @@ public class FornecedorDAO {
 	/**
 	 * Gera a listagem de fornecedores para ser consultado
 	 * @param sql - Parametro utilizado para gerar uma listagem de fornecedor
-	 * @return - Mensagem com o resultado da operação
+	 * @return - Mensagem com o resultado da operaï¿½ï¿½o
 	 */
 	public List<Fornecedor> get(String sql){
 		List<Fornecedor> lista = new ArrayList<Fornecedor>();
