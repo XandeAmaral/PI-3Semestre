@@ -13,7 +13,16 @@ public class Fornecedor {
 		
 	}
 			
+	public Fornecedor( String nome, String cnpj, String telefone, String email) {
+		
+		this.nome = nome;
+		this.cnpj = cnpj;
+		this.telefone = telefone;
+		this.email = email;
+	}
+
 	public Fornecedor(int codfornecedor, String nome, String cnpj, String telefone, String email) {
+		
 		this.codfornecedor = codfornecedor;
 		this.nome = nome;
 		this.cnpj = cnpj;
@@ -58,6 +67,17 @@ public class Fornecedor {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	/**
+	 * Inseri um fornecedor no banco de dados
+	 * @param fornecedor - recebe um objeto do tipo fornecedor. 
+	 */
+public void cadastrarFornecedor(Fornecedor fornecedor) {
+		
+	 FornecedorDAO f =new FornecedorDAO();
+     f.incluir(fornecedor);
+	      
 	}
 
 	

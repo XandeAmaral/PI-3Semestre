@@ -1,23 +1,26 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.JList;
-import javax.swing.JButton;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import control.FornecedorControle;
 
 public class GuiCadastroFornecedor extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtCodigo;
 	private JTextField txtNome;
 	private JTextField txtCNPJ;
 	private JTextField txtTelefone;
@@ -51,17 +54,6 @@ public class GuiCadastroFornecedor extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		txtCodigo = new JTextField();
-		txtCodigo.setColumns(10);
-		txtCodigo.setBounds(110, 146, 86, 20);
-		contentPane.add(txtCodigo);
-		
-		JLabel lblNewLabel_1 = new JLabel("C\u00F3digo:");
-		lblNewLabel_1.setForeground(new Color(0, 100, 0));
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(62, 148, 66, 14);
-		contentPane.add(lblNewLabel_1);
-		
 		JLabel lblNewLabel_1_1 = new JLabel("Nome /Raz\u00E3o social:");
 		lblNewLabel_1_1.setForeground(new Color(0, 100, 0));
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -76,26 +68,52 @@ public class GuiCadastroFornecedor extends JFrame {
 		JLabel lblNewLabel_1_1_1 = new JLabel("CNPJ:");
 		lblNewLabel_1_1_1.setForeground(new Color(0, 100, 0));
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1_1_1.setBounds(239, 148, 45, 14);
+		lblNewLabel_1_1_1.setBounds(62, 146, 45, 14);
 		contentPane.add(lblNewLabel_1_1_1);
 		
 		txtCNPJ = new JTextField();
 		txtCNPJ.setColumns(10);
-		txtCNPJ.setBounds(278, 146, 122, 20);
+		txtCNPJ.setBounds(100, 144, 122, 20);
 		contentPane.add(txtCNPJ);
 		
 		JLabel lblNewLabel_1_1_2 = new JLabel("Telefone:");
 		lblNewLabel_1_1_2.setForeground(new Color(0, 100, 0));
 		lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1_1_2.setBounds(434, 148, 56, 14);
+		lblNewLabel_1_1_2.setBounds(297, 146, 56, 14);
 		contentPane.add(lblNewLabel_1_1_2);
 		
 		txtTelefone = new JTextField();
 		txtTelefone.setColumns(10);
-		txtTelefone.setBounds(499, 146, 159, 20);
+		txtTelefone.setBounds(363, 144, 159, 20);
 		contentPane.add(txtTelefone);
 		
 		JButton btnCadastrarFornecedor = new JButton("Cadastrar");
+		btnCadastrarFornecedor.addActionListener(new ActionListener() {
+			
+			/**
+			 * captura dados inseridos na tela
+			 */
+			public void actionPerformed(ActionEvent e) {
+				boolean sucesso;
+				try{
+					FornecedorControle fornecedorControle = new FornecedorControle();
+					sucesso = fornecedorControle.cadastrarFornecedor(txtNome.getText(),txtCNPJ.getText(),txtTelefone.getText(),txtEmail.getText());
+					if(sucesso == true) {
+						
+						JOptionPane.showMessageDialog(null,"Fornecedor cadastrado com sucesso!!");
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"Fornecedor não cadastrado, preencha todos os campos!!");
+						
+					}
+				}
+				catch(Exception ex) {
+					JOptionPane.showMessageDialog(null,"Erro: " + ex);
+					
+				}
+				
+			}
+		});
 		btnCadastrarFornecedor.setForeground(new Color(0, 100, 0));
 		btnCadastrarFornecedor.setBackground(new Color(153, 204, 153));
 		btnCadastrarFornecedor.setBounds(62, 456, 103, 23);
