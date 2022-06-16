@@ -8,7 +8,7 @@ public class Usuario {
     public String loginUs;
     public String email;
     public String cargo;
-    public String usuarioLogado;
+    public static String usuarioLogado;
      
      
      
