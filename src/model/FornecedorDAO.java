@@ -95,7 +95,8 @@ public class FornecedorDAO {
 	 * @param sql - Parametro utilizado para gerar uma listagem de fornecedor
 	 * @return - Mensagem com o resultado da opera��o
 	 */
-	public List<Fornecedor> get(String sql){
+	public List<Fornecedor> listar(){
+		sql = "Select nome,cnpj,telefone,email, cargo from fornecedor"; 
 		List<Fornecedor> lista = new ArrayList<Fornecedor>();
 		bd.getConnection();
 		try {
