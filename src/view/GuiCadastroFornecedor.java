@@ -17,6 +17,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import control.FornecedorControle;
+import model.Fornecedor;
+import model.FornecedorDAO;
 
 public class GuiCadastroFornecedor extends JFrame {
 
@@ -25,6 +27,10 @@ public class GuiCadastroFornecedor extends JFrame {
 	private JTextField txtCNPJ;
 	private JTextField txtTelefone;
 	private JTextField txtEmail;
+	private String retorno;
+	private FornecedorDAO dao;
+	private Fornecedor fornecedor;
+	private FornecedorControle controle;
 
 	/**
 	 * Launch the application.
@@ -89,29 +95,16 @@ public class GuiCadastroFornecedor extends JFrame {
 		
 		JButton btnCadastrarFornecedor = new JButton("Cadastrar");
 		btnCadastrarFornecedor.addActionListener(new ActionListener() {
-			
-			/**
-			 * captura dados inseridos na tela
-			 */
-			public void actionPerformed(ActionEvent e) {
-				boolean sucesso;
+			public void actionPerformed(ActionEvent e) {				
 				try{
-					FornecedorControle fornecedorControle = new FornecedorControle();
-					sucesso = fornecedorControle.cadastrarFornecedor(txtNome.getText(),txtCNPJ.getText(),txtTelefone.getText(),txtEmail.getText());
-					if(sucesso == true) {
-						
-						JOptionPane.showMessageDialog(null,"Fornecedor cadastrado com sucesso!!");
+					if(controle.checarCampos(txtNome.getText(),txtCNPJ.getText(),txtTelefone.getText(),txtEmail.getText())){
+						fornecedor = new Fornecedor(txtNome.getText(),txtCNPJ.getText(),txtTelefone.getText(),txtEmail.getText());
+						retorno = dao.incluir(fornecedor);
+						JOptionPane.showMessageDialog(null,retorno);
 					}
-					else {
-						JOptionPane.showMessageDialog(null,"Fornecedor não cadastrado, preencha todos os campos!!");
-						
-					}
+					else JOptionPane.showMessageDialog(null,"Verifique se todos os campos estão preeenchidos corretamente.");
 				}
-				catch(Exception ex) {
-					JOptionPane.showMessageDialog(null,"Erro: " + ex);
-					
-				}
-				
+				catch(Exception ex) {JOptionPane.showMessageDialog(null,"Erro: " + ex);}				
 			}
 		});
 		btnCadastrarFornecedor.setForeground(new Color(0, 100, 0));
@@ -120,6 +113,19 @@ public class GuiCadastroFornecedor extends JFrame {
 		contentPane.add(btnCadastrarFornecedor);
 		
 		JButton btnAlterarFornecedor = new JButton("Alterar");
+		btnAlterarFornecedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				try{
+					if(controle.checarCampos(txtNome.getText(),txtCNPJ.getText(),txtTelefone.getText(),txtEmail.getText())){
+						fornecedor = new Fornecedor(txtNome.getText(),txtCNPJ.getText(),txtTelefone.getText(),txtEmail.getText());
+						retorno = dao.atualizar(fornecedor);
+						JOptionPane.showMessageDialog(null,retorno);
+					}
+					else JOptionPane.showMessageDialog(null,"Verifique se todos os campos estão preeenchidos corretamente.");
+				}
+				catch(Exception ex) {JOptionPane.showMessageDialog(null,"Erro: " + ex);}				
+			}
+		});
 		btnAlterarFornecedor.setForeground(new Color(0, 100, 0));
 		btnAlterarFornecedor.setBackground(new Color(153, 204, 153));
 		btnAlterarFornecedor.setBounds(175, 456, 112, 23);
@@ -132,6 +138,19 @@ public class GuiCadastroFornecedor extends JFrame {
 		contentPane.add(btnCancelarFornecedor);
 		
 		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				try{
+					if(controle.checarCampos(txtNome.getText(),txtCNPJ.getText(),txtTelefone.getText(),txtEmail.getText())){
+						fornecedor = new Fornecedor(txtNome.getText(),txtCNPJ.getText(),txtTelefone.getText(),txtEmail.getText());
+						retorno = dao.atualizar(fornecedor);
+						JOptionPane.showMessageDialog(null,retorno);
+					}
+					else JOptionPane.showMessageDialog(null,"Verifique se todos os campos estão preeenchidos corretamente.");
+				}
+				catch(Exception ex) {JOptionPane.showMessageDialog(null,"Erro: " + ex);}				
+			}
+		});
 		btnConsultar.setForeground(new Color(0, 100, 0));
 		btnConsultar.setBackground(new Color(153, 204, 153));
 		btnConsultar.setBounds(514, 382, 89, 23);

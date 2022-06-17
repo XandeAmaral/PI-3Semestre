@@ -57,19 +57,28 @@ public class Usuario {
 
 	public void Usuario() {}
 	
-	 public Usuario(int cod, String nome, String senha,
+	public Usuario(int cod, String nome, String senha,
 			String loginUs, String email, String cargo) {
-		if (cod <= 0) this.setCodusuario(cod);
-		else this.setCodusuario(-1);
+		this.setCodusuario(cod);
 		this.setNome(nome);
 		this.setSenha(senha);
 		this.setLoginUs(loginUs);
 		this.setEmail(email);
 		this.setCargo(cargo);
-	 }
+	}
+	 
+	public Usuario(String nome, String senha,
+				String loginUs, String email, String cargo) {
+		this.setNome(nome);
+		this.setSenha(senha);
+		this.setLoginUs(loginUs);
+		this.setEmail(email);
+		this.setCargo(cargo);
+	}
+	 
 	
-	 public String toString() {
+	public String toString() {
 		return getCodusuario()+";"+getNome()+";"+getLoginUs()+";"+
 				";"+getEmail()+";"+getCargo();
-	 }
+	}
 }

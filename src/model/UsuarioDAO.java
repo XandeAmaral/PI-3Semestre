@@ -39,21 +39,33 @@ public class UsuarioDAO {
 			
 			return retorno;
         }
-        catch(Exception erro) {	
-        	sql = "update usuario set nome=?, senha=?, loginUS=?, email=?, cargo=? where codusuario=?";
-        	try {
-        		bd.st = bd.con.prepareStatement(sql);
-            	bd.st.setNString(1, us.nome);
-            	bd.st.setNString(2, us.senha);
-            	bd.st.setNString(3, us.loginUs);
-            	bd.st.setNString(4, us.email);
-            	bd.st.setNString(5, us.cargo);
-            	bd.st.setInt(6, us.codusuario);
-        		bd.st.executeUpdate();
-        		retorno = "Funcionario atualizado com sucesso"; 
-        	}
-        	catch(Exception e) {retorno = "Falha no método alterar do usuarioDAO";}        	
-        }		
+        catch(Exception e) {retorno = "Falha no método alterar do usuarioDAO";}
+        
+		finally { bd.close(); }
+		return retorno;
+    }
+    
+    /**
+     * Atualiza um usuario na reegistrado no banco
+     * @param us recebe um objeto do tipo usuario
+     * @return retorna uma String com o resultado de sucesso ou nao
+     */
+    public String atualizar(Usuario us) 
+    {	
+       	sql = "update usuario set nome=?, senha=?, loginUS=?, email=?, cargo=? where codusuario=?";
+        try {        	
+        	bd.st = bd.con.prepareStatement(sql);
+           	bd.st.setNString(1, us.nome);
+           	bd.st.setNString(2, us.senha);
+           	bd.st.setNString(3, us.loginUs);
+           	bd.st.setNString(4, us.email);
+           	bd.st.setNString(5, us.cargo);
+           	bd.st.setInt(6, us.codusuario);
+        	bd.st.executeUpdate();
+        	retorno = "Usuario atualizado com sucesso"; 
+        }
+        catch(Exception e) {retorno = "Falha no método alterar do usuarioDAO";}        	
+        		
 		finally { bd.close(); }
 		return retorno;
     }
