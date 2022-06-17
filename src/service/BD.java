@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 public class BD {
 	
-	public Connection con = null;//realiza a conexão ao banco.
-	public PreparedStatement st = null; //executa instruções SQL.
+	public Connection con = null;//realiza a conexï¿½o ao banco.
+	public PreparedStatement st = null; //executa instruï¿½ï¿½es SQL.
 	public ResultSet rs = null; //armazena as querys.
 	
-	public final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver"; //driver de conexão ao banco
+	public final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver"; //driver de conexï¿½o ao banco
 	public final String BANCO = "fornecedor";
 	//public final String URL = "jdbc:sqlserver://localhost:1433;databasename="+BANCO;
 	private final String URL = "jdbc:sqlserver://localhost:1433;databasename="+BANCO+";encrypt=true;trustServerCertificate=true";
@@ -20,8 +20,8 @@ public class BD {
 	public final String SENHA = "123456789";
 	
 	/**
-	 * Abre uma conexão com o banco de dados a partir dos dados definidos acima
-	 * @return - true em caso de sucesso ou false caso contrário
+	 * Abre uma conexï¿½o com o banco de dados a partir dos dados definidos acima
+	 * @return - true em caso de sucesso ou false caso contrï¿½rio
 	 */
 	public boolean getConnection() {
 		//carrega o driver
@@ -32,16 +32,16 @@ public class BD {
 			return true;
 		}
 		catch(ClassNotFoundException erro) {
-			System.out.println("Driver não encontrado!!!");
+			System.out.println("Driver nï¿½o encontrado!!!");
 			return false;
 		}
 		catch (SQLException erro) {
-			System.out.println("Falha na conexão !!!"+erro);
+			System.out.println("Falha na conexï¿½o !!!"+erro);
 			return false;
 		}
 	}
 	/**
-	 * Encerra a conexão com o banco de dados
+	 * Encerra a conexï¿½o com o banco de dados
 	 */
 	public void close() {
 		try {
